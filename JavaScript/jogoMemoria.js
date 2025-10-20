@@ -17,7 +17,30 @@ let totalPares = 0;
 
 // Símbolos para as cartas (pode ser alterado facilmente)
 const EMOJIS = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐯', '🦁', '🐮', '🐷', '🐸', '🐵', '🐔', '🐧', '🐦', '🐤', '🐺', '🐗', '🐴', '🦄', '🐝', '🐛'];
+// ==========================================================
+// TAREFA 4: CONTADOR DE JOGADAS
+// ==========================================================
 
+/**
+ * Incrementa o contador de jogadas e atualiza o display na tela.
+ */
+function incrementarJogada() {
+    // Usa a variável global 'jogadas' que você já declarou.
+    jogadas++; 
+    if (jogadasSpan) {
+        jogadasSpan.textContent = jogadas;
+    }
+}
+
+/**
+ * Reseta o contador de jogadas para o início de uma nova partida.
+ */
+function resetarJogadas() {
+    jogadas = 0; 
+    if (jogadasSpan) {
+        jogadasSpan.textContent = jogadas;
+    }
+}
 // ==========================================================
 // TAREFA 1: LÓGICA PRINCIPAL 
 // ==========================================================
@@ -55,7 +78,8 @@ window.iniciarJogo = function(tamanho) {
     if (document.querySelector('.carta')) { // Mostra a mensagem apenas se não for a primeira carga
         alert('Jogo reiniciado!');
     }
-
+    // TAREFA 4: USAR A FUNÇÃO DE RESET
+    resetarJogadas();
     // TAREFA 4 (Lógica integrada): Resetar contadores na interface
     jogadasSpan.textContent = '0';
     tamanhoSpan.textContent = `${tamanho}x${tamanho}`;
@@ -124,7 +148,8 @@ function virarCarta() {
     // TAREFA 4 (Lógica integrada): Contabiliza a jogada
     jogadas++;
     jogadasSpan.textContent = jogadas;
-
+    incrementarJogada();
+    
     verificarPar();
 }
 
